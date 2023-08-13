@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 
 builder.Services.AddDbContext<DbManager>(opt =>
 {
@@ -24,7 +25,7 @@ var app = builder.Build();
 //    app.UseSwagger();
 //    app.UseSwaggerUI();
 //}
-
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost/clietnapi","http://localhost/xxx"));
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
